@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GIG NEXUS SOLUTION LTD - Dashboard</title>
-    <!-- Tailwind CSS Script -->
-    <script src="https://cdn.tailwindess.com"></script>
+    
+    <!-- STABLE STYLING COMPILER FOR LIVE SERVERS (ONRENDER) -->
+    <script src="https://tailwindcss.com"></script>
+    
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0b0f19; }
         .app-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="flex justify-center items-center min-h-screen p-3 selection:bg-blue-500 selection:text-white">
+<body class="flex justify-center items-center min-h-screen bg-slate-950 p-0 sm:p-3 selection:bg-blue-500 selection:text-white">
 
-    <!-- Smartphone Mockup Wrapper Container -->
-    <div class="w-full max-w-sm bg-slate-900 rounded-[45px] shadow-2xl border-[12px] border-slate-800 overflow-hidden relative" style="height: 840px;">
+    <!-- Primary Phone Screen Layout Base Container -->
+    <div class="w-full max-w-sm bg-slate-50 min-h-screen sm:min-h-0 sm:h-[820px] sm:rounded-[45px] shadow-2xl sm:border-[12px] border-slate-800 overflow-hidden relative flex flex-col">
         
         <!-- Screen Content Viewport -->
-        <div id="viewportContainer" class="app-scrollbar h-full overflow-y-auto px-5 py-6 flex flex-col justify-between pb-10 bg-slate-50 text-slate-800">
+        <div id="viewportContainer" class="app-scrollbar flex-1 overflow-y-auto px-5 py-6 flex flex-col justify-between pb-10 bg-slate-50 text-slate-800">
             
             <!-- SECTION 1: VISITOR REGISTRATION AND SIGN IN GATE -->
-            <div id="authGateModule" class="flex flex-col justify-center h-full my-auto">
+            <div id="authGateModule" class="flex flex-col justify-center my-auto w-full">
                 <div class="text-center mb-6">
                     <div class="flex items-center justify-center gap-2 mb-1">
                         <i class="fa-solid fa-cubes text-blue-600 text-2xl"></i>
@@ -38,10 +41,10 @@
                 </div>
 
                 <!-- Input Tab Container Card -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full">
                     <div class="flex border-b border-slate-200 mb-4 text-xs font-bold uppercase tracking-wider">
-                        <button id="tabSelectorLogin" class="w-1/2 pb-2 text-blue-600 border-b-2 border-blue-600" onclick="switchFormContext('login')">Sign In</button>
-                        <button id="tabSelectorRegister" class="w-1/2 pb-2 text-slate-400" onclick="switchFormContext('register')">Register</button>
+                        <button id="tabSelectorLogin" type="button" class="w-1/2 pb-2 text-blue-600 border-b-2 border-blue-600" onclick="switchFormContext('login')">Sign In</button>
+                        <button id="tabSelectorRegister" type="button" class="w-1/2 pb-2 text-slate-400" onclick="switchFormContext('register')">Register</button>
                     </div>
 
                     <!-- Client Access Form -->
@@ -105,8 +108,8 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: LIVE METRICS USER DASHBOARD (VISUAL MATCH) -->
-            <div id="applicationDashboard" class="hidden flex flex-col space-y-4">
+            <!-- SECTION 2: LIVE METRICS USER DASHBOARD -->
+            <div id="applicationDashboard" class="hidden flex flex-col space-y-4 w-full">
                 
                 <!-- Interface Header Component -->
                 <div class="flex items-center justify-between border-b border-slate-200 pb-3">
@@ -132,12 +135,10 @@
                             Pay Now
                         </button>
                     </div>
-                    <!-- Direct, Non-Hidden View of numbers for fast user execution -->
                     <div class="bg-white border border-blue-100 p-2 rounded-lg text-[11px] text-slate-700 space-y-1 font-medium">
                         <div>💵 Send 70 KSH to M-Pesa: <span class="font-black text-blue-700 bg-blue-50 px-1 rounded text-xs">0142144664</span></div>
                         <div>🏢 Account Name: <span class="font-bold text-slate-950 text-[10px]">GIG NEXUS SOLUTION ANGENCIES LTD</span></div>
                     </div>
                 </div>
 
-                <!-- Balance Asset Tracker Card -->
-    
+                                        
