@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Nexus Solution Ltd - Premium Portal</title>
+    <!-- Tailwind CSS Engine for High-End Smartphone UI Rendering -->
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        /* Custom smooth pulse animation for interactive locking elements */
+        .glow-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .6; } }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950">
+
+    <!-- Premium Corporate Sticky Header -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 sticky top-0 z-50 px-5 py-4 flex items-center justify-between shadow-xl">
+        <div class="flex flex-col">
+            <h1 class="text-xl font-black tracking-wider bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">GIG NEXUS</h1>
+            <p class="text-[9px] text-slate-400 tracking-[0.25em] font-bold uppercase">Solution Ltd</p>
+        </div>
+        <div id="status-badge" class="bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-wider">
+            <span class="h-1.5 w-1.5 rounded-full bg-amber-400 glow-pulse"></span>
+            Account Unverified
+        </div>
+    </header>
+
+    <!-- Main Dynamic Application Window -->
+    <main class="max-w-md w-full mx-auto p-4 flex-grow flex flex-col justify-start space-y-6">
+
+        <!-- STEP A: PORTAL ACCESS REGULAR GATEWALL (SYSTEM GATEWAY) -->
+        <section id="entry-gate-ui" class="bg-slate-900 rounded-2xl p-6 border border-slate-800/60 shadow-2xl text-center space-y-5 transition-all duration-300 transform scale-100">
+            <div class="inline-flex bg-gradient-to-br from-emerald-500/10 to-teal-500/5 text-emerald-400 p-4 rounded-2xl text-3xl border border-emerald-500/20 shadow-inner">
+                🔒
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-xl font-extrabold tracking-tight text-white">Nexus Portal Verification</h2>
+                <p class="text-xs text-slate-400 leading-relaxed px-2">Activate your profile to view thousands of verified, automated micro-gigs paying up to KES 25,000 weekly.</p>
+            </div>
+            
+            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800/80 flex justify-between items-center text-sm">
+                <div class="flex flex-col text-left">
+                    <span class="font-bold text-slate-200">One-Time Entry Fee</span>
+                    <span class="text-[10px] text-slate-500">Safaricom Network Charge</span>
+                </div>
+                <span class="text-xl font-black text-emerald-400">KES 70</span>
+            </div>
+
+            <div class="space-y-3 pt-1">
+                <div class="relative">
+                    <span class="absolute left-4 top-3.5 text-xs font-bold text-slate-500 tracking-wider">+254</span>
+                    <input type="tel" id="mpesa-phone-input" placeholder="712345678" maxlength="9"
+                           class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3.5 pl-14 pr-4 text-sm font-bold tracking-[0.15em] focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 focus:outline-none text-white transition placeholder:text-slate-700">
+                </div>
+                <button onclick="requestPortalAccess()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-4 rounded-xl text-sm transition-all duration-200 tracking-wider uppercase shadow-lg shadow-emerald-500/10 active:scale-[0.98]">
+                    Request M-Pesa Access PIN
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP B: MAIN PREMIUM GIG DASHBOARD CONTAINER (LOCKED BY DEFAULT) -->
+        <section id="premium-dashboard-ui" class="hidden space-y-4 animate-[fadeIn_0.4s_ease-out]">
+            <div class="flex items-center justify-between px-1">
+                <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase">Available Live Pipelines</h3>
+                <span class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] px-2.5 py-0.5 rounded-full font-black tracking-wider uppercase">Active Board</span>
+            </div>
+
+            <!-- STREAM PREVIEW CARD 01 (KES 150 PAYWALL) -->
+            <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800/60 shadow-xl space-y-4 transition hover:border-slate-700/60">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-emerald-500/10 text-emerald-400 text-[9px] font-extrabold tracking-widest px-2 py-0.5 rounded uppercase">Data Operations</span>
+                        <h4 class="text-base font-bold text-white mt-1">Remote Excel Document Assistant</h4>
+                    </div>
+                    <div class="text-right flex flex-col">
+                        <span class="text-xs font-black text-emerald-400 bg-slate-950 px-2.5 py-1 rounded-xl border border-slate-800">KES 150</span>
+                        <span class="text-[9px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Unlock Price</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">Processing company digital manifests. Payout parameters scale at KES 15,000/week paid via corporate M-Pesa business ledger lines.</p>
+                
+                <div id="action-wrapper-001">
+                    <button onclick="unlockSpecificGig('GIG-001', 150)" class="w-full bg-slate-950 hover:bg-slate-800 text-slate-200 font-bold py-3 rounded-xl text-xs transition border border-slate-800 flex items-center justify-center gap-2 active:scale-[0.99]">
+                        🔑 Authorize M-Pesa Unlock Link
+                    </button>
+                </div>
+                <div id="secure-target-001" class="hidden bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/20 text-xs flex flex-col items-center space-y-2 text-center">
+                    <span class="text-xl">✅</span>
+                    <p class="text-slate-200 font-medium">Data Pipeline Unlocked Successfully!</p>
+                    <a href="https://forms.gle" target="_blank" class="text-emerald-400 font-black underline text-sm tracking-wide hover:text-emerald-300">Open Official Application Form &rarr;</a>
+                </div>
+            </div>
+
+            <!-- STREAM PREVIEW CARD 02 (KES 200 PAYWALL) -->
+            <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800/60 shadow-xl space-y-4 transition hover:border-slate-700/60">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-teal-500/10 text-teal-400 text-[9px] font-extrabold tracking-widest px-2 py-0.5 rounded uppercase">Customer Relations</span>
+                        <h4 class="text-base font-bold text-white mt-1">Virtual Smartphone Support Agent</h4>
+                    </div>
+                    <div class="text-right flex flex-col">
+                        <span class="text-xs font-black text-emerald-400 bg-slate-950 px-2.5 py-1 rounded-xl border border-slate-800">KES 200</span>
+                        <span class="text-[9px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Unlock Price</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">Handle localized user ticket requests directly from your mobile handset device. Payout structure averages KES 20,000/week guaranteed.</p>
+                
+                <div id="action-wrapper-002">
+                    <button onclick="unlockSpecificGig('GIG-002', 200)" class="w-full bg-slate-950 hover:bg-slate-800 text-slate-200 font-bold py-3 rounded-xl text-xs transition border border-slate-800 flex items-center justify-center gap-2 active:scale-[0.99]">
+                        🔑 Authorize M-Pesa Unlock Link
+                    </button>
+                </div>
+                <div id="secure-target-002" class="hidden bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/20 text-xs flex flex-col items-center space-y-2 text-center">
+                    <span class="text-xl">✅</span>
+                    <p class="text-slate-200 font-medium">Customer Pipeline Unlocked Successfully!</p>
+                    <a href="https://forms.gle" target="_blank" class="text-emerald-400 font-black underline text-sm tracking-wide hover:text-emerald-300">Open Official Application Form &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Legal & Operations Disclaimer Footer -->
+    <footer class="p-5 border-t border-slate-900 bg-slate-950 text-center space-y-2">
+        <p class="text-[10px] text-slate-500 font-medium leading-relaxed max-w-xs mx-auto">
+            &copy; 2026 Gig Nexus Solution Ltd. All Rights Reserved. Authorized processing node connected via certified network protocol pathways. All transactions processed securely.
+        </p>
+    </footer>
+
+    <!-- Client Core Operational Logic Handler Injection -->
+    <script>
+        let verifiedMpesaNumber = "";
+
+        // UI Logic to transition and simulate verification hooks
+        function requestPortalAccess() {
+            const rawPhone = document.getElementById('mpesa-phone-input').value;
+            if(!rawPhone || rawPhone.length < 9) {
+                alert("Please input a valid phone digits configuration sequence (9 numbers).");
