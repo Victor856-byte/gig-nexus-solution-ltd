@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Nexus Solution Ltd</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #f5f7fb; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 10px; }
+        .phone-container { width: 100%; max-width: 380px; background: white; border-radius: 30px; border: 8px solid #000; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .header-title { font-size: 16px; font-weight: bold; color: #111; text-transform: uppercase; text-align: center; line-height: 1.2; }
+        .alert-box { display: flex; justify-content: space-between; align-items: center; background: #eef5fc; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 13px; color: #333; }
+        .btn-blue { background: #1a73e8; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .section-title { font-size: 12px; font-weight: bold; color: #444; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .balance-card { margin-bottom: 20px; }
+        .balance-amount { font-size: 28px; font-weight: 800; color: #000; margin-bottom: 10px; }
+        .btn-gray { background: #7f8c8d; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; text-transform: uppercase; }
+        .refer-card { background: #fff; border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
+        .refer-row { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 10px; border-radius: 6px; margin: 8px 0; font-size: 12px; font-weight: 500; }
+        .btn-copy { background: #555; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+        .refer-text { font-size: 12px; color: #27ae60; font-weight: bold; margin-bottom: 12px; text-align: center; }
+        .btn-green-action { background: #0077ff; color: white; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 6px; font-size: 12px; cursor: pointer; }
+        .task-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .task-btn { border: none; color: white; padding: 15px 10px; border-radius: 8px; text-align: center; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+        .task-btn span { font-size: 12px; text-transform: uppercase; }
+        .task-btn small { font-size: 9px; opacity: 0.8; font-weight: normal; }
+        .bg-blue { background: #0072ff; } .bg-darkgreen { background: #008040; } .bg-lightgreen { background: #00cc66; } .bg-charcoal { background: #424949; }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">Gig Nexus<br>Solution Ltd</div>
+    </div>
+
+    <!-- Activation Banner -->
+    <div class="alert-box">
+        <div>Pay 70 KSH to activate your<br>account.</div>
+        <button class="btn-blue" onclick="activateAccount()">Activate Now</button>
+    </div>
+
+    <!-- Wallet Balance -->
+    <div class="balance-card">
+        <div class="section-title">WALLET BALANCE (KES)</div>
+        <div class="balance-amount" id="balanceDisplay">KES 0.00</div>
+        <button class="btn-gray" onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <!-- Refer & Earn -->
+    <div class="refer-card">
+        <div class="section-title">REFER & EARN PROGRAM</div>
+        <div style="font-size: 12px; color:#555;">Total Referral Earnings: KES 0.00</div>
+        <div class="refer-row">
+            <div><strong>Referral Link:</strong><br><span id="refLink">GIGNexus.com/ref/USER123</span></div>
+            <button class="btn-copy" onclick="copyLink()">COPY</button>
+        </div>
+        <div class="refer-text">Earn KES 60.00 instantly for every new successful referral!</div>
+        <button class="btn-green-action" onclick="simulateReferral()">Simulate Successful Referral</button>
+    </div>
+
+    <!-- Tasks Layout -->
+    <div class="section-title">TASKS</div>
+    <div class="task-grid">
+        <button class="task-btn bg-blue" onclick="runTask('Surveys')"><span>Surveys</span><small>(KES 10-25 PER SURVEY)</small></button>
+        <button class="task-btn bg-darkgreen" onclick="runTask('Videos')"><span>Watch Videos</span><small>(UP TO KES 50 PER VIDEO)</small></button>
+        <button class="task-btn bg-lightgreen" onclick="runTask('Games')"><span>Play Games</span><small>(UP TO KES 50 PER GAME)</small></button>
+        <button class="task-btn bg-charcoal" onclick="runTask('Premium')"><span>Premium Surveys</span><small>(LOCKED)</small></button>
+    </div>
+</div>
+
+<script>
+    let balance = 0.00;
+
+    function updateBalance() {
+        document.getElementById('balanceDisplay').innerText = `KES ${balance.toFixed(2)}`;
+    }
+
+    function activateAccount() {
+        alert("Redirecting to your mobile money provider to pay 70 KSH...");
+    }
+
+    function withdraw() {
+        if(balance <= 0) {
+            alert("Your balance is KES 0.00. You cannot withdraw at this time.");
+        } else {
+            alert(`Withdrawing KES ${balance.toFixed(2)} to your registered line.`);
+        }
+    }
+
+    function copyLink() {
+        const linkText = document.getElementById('refLink').innerText;
+        navigator.clipboard.writeText(linkText).then(() => {
+            alert("Referral link copied to clipboard!");
+        }).catch(() => {
+            alert("Link copied: " + linkText);
+        });
+    }
+
+    function simulateReferral() {
+        balance += 60.00;
+        updateBalance();
+        alert("Success! KES 60.00 has been added to your dashboard balance.");
+    }
+
+    function runTask(taskName) {
+        if(taskName === 'Premium') {
+            alert("This task is locked! Activate your account first.");
+        } else {
+            alert(`Opening ${taskName} portal...`);
+        }
+    }
+</script>
+
+</body>
+  </html>
+
