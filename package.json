@@ -1,0 +1,13 @@
+{
+  "name": "gig-nexus-solution-ltd",
+  "version": "1.0.0",
+  "description": "Gig Nexus Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+
