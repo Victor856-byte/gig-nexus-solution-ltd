@@ -3,150 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIG NEXUS SOLUTION LTD</title>
-    <!-- Tailwind CSS CDN for Styling -->
+    <title>GIG NEXUS SOLUTION LTD - Dashboard</title>
+    <!-- Tailwind CSS Script -->
     <script src="https://cdn.tailwindess.com"></script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { background-color: #030712; color: #f3f4f6; font-family: sans-serif; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; }
+        .app-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body>
+<body class="flex justify-center items-center min-h-screen p-3 selection:bg-blue-500 selection:text-white">
 
-    <!-- GATEWAY: MANDATORY AUTHENTICATION LAYOUT -->
-    <div id="loginGateView" class="fixed inset-0 z-50 bg-[#030712] flex items-center justify-center p-4">
-        <div class="w-full max-w-md bg-[#0d1225] border border-blue-950 rounded-2xl p-6 space-y-6 shadow-2xl text-center">
-            <div>
-                <h1 class="text-3xl font-bold tracking-wider text-blue-500">GIG NEXUS</h1>
-                <p class="text-xs text-gray-400 font-mono">SOLUTION LTD</p>
-                <div class="h-[1px] w-16 bg-blue-500 mx-auto mt-4"></div>
-            </div>
-            
-            <form onsubmit="handleInitialPlatformLogin(event)" class="space-y-4 text-left">
-                <div>
-                    <label class="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1">Phone Number</label>
-                    <input required type="tel" id="loginPhoneField" placeholder="e.g. 0712345678" class="w-full bg-[#16203d] border border-blue-900/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1">Email Address</label>
-                    <input required type="email" id="loginEmailField" placeholder="name@domain.com" class="w-full bg-[#16203d] border border-blue-900/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition">
-                </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition shadow-lg shadow-blue-600/20 mt-2">
-                    Access Platform Dashboard
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MAIN PLATFORM INTERFACE CONTAINER -->
-    <div id="mainDashboardView" class="hidden">
+    <!-- Smartphone Mockup Wrapper Container -->
+    <div class="w-full max-w-sm bg-slate-900 rounded-[45px] shadow-2xl border-[12px] border-slate-800 overflow-hidden relative" style="height: 840px;">
         
-        <!-- TOP HEADER / BRANDING -->
-        <div class="p-4 text-center border-b border-gray-800 bg-gray-950">
-            <h1 class="text-2xl font-bold tracking-wider text-blue-500">GIG NEXUS</h1>
-            <p class="text-xs text-gray-400 font-mono">SOLUTION LTD</p>
-        </div>
-
-        <!-- MAIN DASHBOARD CONTENT SCROLL -->
-        <div class="p-4 space-y-4 max-w-md mx-auto">
+        <!-- Screen Content Viewport -->
+        <div id="viewportContainer" class="app-scrollbar h-full overflow-y-auto px-5 py-6 flex flex-col justify-between pb-10 bg-slate-50 text-slate-800">
             
-            <!-- ACCOUNT ACTIVATION ALERT BOX -->
-            <div id="activationBanner" class="p-4 rounded-xl bg-gray-900 border border-blue-900/50 flex justify-between items-center">
-                <div>
-                    <p class="text-sm font-semibold text-white">Pay 70 KSH to activate your account</p>
-                    <p class="text-xs text-gray-400">Activate now to unlock all features and start earning.</p>
+            <!-- SECTION 1: VISITOR REGISTRATION AND SIGN IN GATE -->
+            <div id="authGateModule" class="flex flex-col justify-center h-full my-auto">
+                <div class="text-center mb-6">
+                    <div class="flex items-center justify-center gap-2 mb-1">
+                        <i class="fa-solid fa-cubes text-blue-600 text-2xl"></i>
+                        <h1 class="text-lg font-black text-slate-900 tracking-tight">GIG NEXUS SOLUTION LTD</h1>
+                    </div>
+                    <p class="text-xs text-slate-500 font-semibold">Account Onboarding Portal</p>
                 </div>
-                <button onclick="openModal('activationModal')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
-                    Activate Now
-                </button>
+
+                <!-- Credential Warning Banner -->
+                <div id="authAlertBanner" class="hidden bg-red-50 border border-red-200 text-red-700 p-3 rounded-xl text-xs font-bold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+                    <span>Unknown username or wrong password</span>
+                </div>
+
+                <!-- Input Tab Container Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex border-b border-slate-200 mb-4 text-xs font-bold uppercase tracking-wider">
+                        <button id="tabSelectorLogin" class="w-1/2 pb-2 text-blue-600 border-b-2 border-blue-600" onclick="switchFormContext('login')">Sign In</button>
+                        <button id="tabSelectorRegister" class="w-1/2 pb-2 text-slate-400" onclick="switchFormContext('register')">Register</button>
+                    </div>
+
+                    <!-- Client Access Form -->
+                    <form id="signInForm" onsubmit="processUserSignIn(event)" class="space-y-3.5">
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Email Address</label>
+                            <input type="email" id="loginEmailField" required class="w-full text-sm px-3 py-2 mt-1 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Secure Password</label>
+                            <input type="password" id="loginPasswordField" required class="w-full text-sm px-3 py-2 mt-1 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500 transition-all">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg text-xs uppercase tracking-wider transition-colors mt-2">Sign In</button>
+                    </form>
+
+                    <!-- Profile Registration Form -->
+                    <form id="signUpForm" onsubmit="processUserSignUp(event)" class="space-y-3 hidden">
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Full Name</label>
+                            <input type="text" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Phone Number</label>
+                            <input type="tel" placeholder="e.g. 07..." required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Email Address</label>
+                            <input type="email" id="registerEmailField" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Country</label>
+                            <select class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-blue-500">
+                                <optgroup label="Africa">
+                                    <option>Kenya</option>
+                                    <option>South Africa</option>
+                                    <option>Nigeria</option>
+                                </optgroup>
+                                <optgroup label="Europe">
+                                    <option>United Kingdom</option>
+                                    <option>Germany</option>
+                                    <option>France</option>
+                                    <option>Italy</option>
+                                </optgroup>
+                                <optgroup label="Asia">
+                                    <option>Japan</option>
+                                    <option>India</option>
+                                    <option>South Korea</option>
+                                </optgroup>
+                                <optgroup label="Americas">
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Create Password</label>
+                            <input type="password" id="registerPasswordField" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-xs uppercase tracking-wider transition-colors mt-2">Create Account</button>
+                    </form>
+                </div>
             </div>
 
-            <!-- WALLET BOX (Starts at KES 0.00) -->
-            <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-900 to-blue-950 border border-blue-800 shadow-xl relative overflow-hidden">
-                <p class="text-xs font-mono uppercase tracking-widest text-blue-300">Wallet (KES)</p>
-                <div class="flex items-baseline space-x-1 mt-1">
-                    <span class="text-3xl font-bold tracking-tight" id="walletDisplay">KES 0.00</span>
-                </div>
+            <!-- SECTION 2: LIVE METRICS USER DASHBOARD (VISUAL MATCH) -->
+            <div id="applicationDashboard" class="hidden flex flex-col space-y-4">
                 
-                <!-- Withdraw Button -->
-                <button onclick="attemptWithdrawal()" class="absolute right-6 bottom-6 flex flex-col items-center justify-center text-gray-400 hover:text-white transition">
-                    <i class="fa-solid fa-qrcode text-2xl text-blue-400"></i>
-                    <span class="text-xs mt-1 font-semibold">Withdraw</span>
-                </button>
-            </div>
-
-            <!-- REFERRAL BOX SECTION -->
-            <div class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-                <h3 class="text-sm font-bold text-gray-300 mb-1"><i class="fa-solid fa-users text-emerald-400 mr-2"></i>Refer & Earn Program</h3>
-                <p class="text-xs text-gray-400 mb-3">Invite friends and earn <span class="text-emerald-400 font-bold">KES 60.00</span> immediately per referral.</p>
-                <button onclick="triggerReferralBonus()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 rounded-lg transition">
-                    Simulate a Successful Referral
-                </button>
-            </div>
-
-            <!-- PLATFORM TASKS PANEL -->
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Available Tasks</h2>
-                    <span class="text-xs text-blue-400 font-medium">View All <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></span>
+                <!-- Interface Header Component -->
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-cubes text-blue-600 text-xl"></i>
+                        <div>
+                            <h1 class="text-sm font-black text-slate-900 tracking-tight leading-none">GIG NEXUS</h1>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest uppercase">Solution Ltd</span>
+                        </div>
+                    </div>
+                    <button onclick="logoutActiveSession()" class="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors">
+                        Sign Out <i class="fa-solid fa-right-from-bracket ml-0.5"></i>
+                    </button>
                 </div>
 
-                <!-- Grid Items Container -->
-                <div class="grid grid-cols-2 gap-3">
-                    
-                    <!-- Task 1: Normal Survey -->
-                    <div onclick="completeTask('Normal Survey')" class="p-4 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition relative group">
-                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-3">
-                            <i class="fa-solid fa-clipboard-list"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-0.5">Surveys</h4>
-                        <p class="text-[11px] text-gray-400 leading-tight">Earn by taking small random surveys.</p>
-                        <div class="mt-3 text-xs font-mono text-amber-400 font-bold">Payout: KES 10 - 25</div>
+                <!-- HIGH VISIBILITY ACTIVATION STATUS CARD -->
+                <div class="bg-blue-50 border-2 border-blue-200 p-4 rounded-xl flex flex-col gap-3 shadow-md">
+                    <div class="flex items-center justify-between">
+                        <p class="text-xs font-bold text-slate-800 max-w-[65%] leading-tight">
+                            Pay <span class="text-blue-700 font-extrabold text-sm">70 KSH</span> to activate your earnings layout account.
+                        </p>
+                        <button onclick="displayUiModal('depositAlertModal')" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-[11px] py-2 px-3 rounded-lg shadow-md transition-colors tracking-wide uppercase">
+                            Pay Now
+                        </button>
                     </div>
-
-                    <!-- Task 2: Premium Survey -->
-                    <div onclick="openModal('premiumPassModal')" class="p-4 rounded-xl bg-gray-900 border border-indigo-950 hover:border-indigo-800 cursor-pointer transition relative group overflow-hidden">
-                        <div id="premiumLockStatusBadge" class="absolute top-0 right-0 bg-indigo-600 text-[9px] text-white px-2 py-0.5 font-bold uppercase rounded-bl">Locked</div>
-                        <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-3">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-0.5">Premium Survey</h4>
-                        <p id="premiumDescriptionLabel" class="text-[11px] text-gray-400 leading-tight">Pay KES 50 fee to unlock premium items.</p>
-                        <div class="mt-3 text-xs font-mono text-indigo-400 font-bold">Payout: KES 100 - 200</div>
+                    <!-- Direct, Non-Hidden View of numbers for fast user execution -->
+                    <div class="bg-white border border-blue-100 p-2 rounded-lg text-[11px] text-slate-700 space-y-1 font-medium">
+                        <div>💵 Send 70 KSH to M-Pesa: <span class="font-black text-blue-700 bg-blue-50 px-1 rounded text-xs">0142144664</span></div>
+                        <div>🏢 Account Name: <span class="font-bold text-slate-950 text-[10px]">GIG NEXUS SOLUTION ANGENCIES LTD</span></div>
                     </div>
-
-                    <!-- Task 3: Watching Videos -->
-                    <div onclick="completeTask('Video Task')" class="p-4 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
-                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-3">
-                            <i class="fa-solid fa-play"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-0.5">Watching Videos</h4>
-                        <p class="text-[11px] text-gray-400 leading-tight">Watch clips and promotional items.</p>
-                        <div class="mt-3 text-xs font-mono text-emerald-400 font-bold">Payout: Up to KES 50</div>
-                    </div>
-
-                    <!-- Task 4: Playing Games -->
-                    <div onclick="completeTask('Game Task')" class="p-4 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 cursor-pointer transition">
-                        <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-3">
-                            <i class="fa-solid fa-gamepad"></i>
-                        </div>
-                        <h4 class="text-sm font-bold text-white mb-0.5">Playing Games</h4>
-                        <p class="text-[11px] text-gray-400 leading-tight">Play lightweight browser games.</p>
-                        <div class="mt-3 text-xs font-mono text-purple-400 font-bold">Payout: Up to KES 50</div>
-                    </div>
-
                 </div>
-            </div>
 
-        </div>
-    </div>
-
-    <!-- MODAL 1: INITIAL 70 KSH ACTIVATION GATE -->
-    <div id="activationModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div onclick="closeModal('activationModal')" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-        <div class="relative w-full max-w-sm bg-[#0d1225] border border-blue-900/40 rounded-2xl p-6 space-y-4 shadow-2xl">
-            <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <h3 class="text-lg font-bold text-white">Manual Portal Activation</h3>
-                        
+                <!-- Balance Asset Tracker Card -->
+    
