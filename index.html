@@ -3,142 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GIG NEXUS SOLUTION LTD - Dashboard</title>
+    <title>GIG NEXUS SOLUTION LTD - Portal</title>
     
-    <!-- STABLE STYLING COMPILER FOR LIVE SERVERS (ONRENDER) -->
+    <!-- Stable Tailwind CSS Engine -->
     <script src="https://tailwindcss.com"></script>
-    
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome for Exact Icon Set -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; }
-        .app-scrollbar::-webkit-scrollbar { display: none; }
+        @import url('https://googleapis.com');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #e2e8f0; 
+        }
+        .clean-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .inset-shadow-custom {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+        }
     </style>
 </head>
-<body class="flex justify-center items-center min-h-screen bg-slate-950 p-0 sm:p-3 selection:bg-blue-500 selection:text-white">
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4">
 
-    <!-- Primary Phone Screen Layout Base Container -->
-    <div class="w-full max-w-sm bg-slate-50 min-h-screen sm:min-h-0 sm:h-[820px] sm:rounded-[45px] shadow-2xl sm:border-[12px] border-slate-800 overflow-hidden relative flex flex-col">
+    <!-- Exact Screenshot Layout Container -->
+    <div class="w-full max-w-sm bg-[#f8fafc] min-h-screen sm:min-h-0 sm:h-[840px] sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col border border-slate-200">
         
-        <!-- Screen Content Viewport -->
-        <div id="viewportContainer" class="app-scrollbar flex-1 overflow-y-auto px-5 py-6 flex flex-col justify-between pb-10 bg-slate-50 text-slate-800">
+        <!-- Main Scrollable App Container -->
+        <div class="flex-1 overflow-y-auto px-5 py-6 flex flex-col space-y-5 bg-[#f8fafc]">
             
-            <!-- SECTION 1: VISITOR REGISTRATION AND SIGN IN GATE -->
-            <div id="authGateModule" class="flex flex-col justify-center my-auto w-full">
-                <div class="text-center mb-6">
-                    <div class="flex items-center justify-center gap-2 mb-1">
-                        <i class="fa-solid fa-cubes text-blue-600 text-2xl"></i>
-                        <h1 class="text-lg font-black text-slate-900 tracking-tight">GIG NEXUS SOLUTION LTD</h1>
+            <!-- 1. Header Module -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2 rounded-xl shadow-sm">
+                        <i class="fa-solid fa-cubes text-white text-lg"></i>
                     </div>
-                    <p class="text-xs text-slate-500 font-semibold">Account Onboarding Portal</p>
-                </div>
-
-                <!-- Credential Warning Banner -->
-                <div id="authAlertBanner" class="hidden bg-red-50 border border-red-200 text-red-700 p-3 rounded-xl text-xs font-bold mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-triangle-exclamation text-sm"></i>
-                    <span>Unknown username or wrong password</span>
-                </div>
-
-                <!-- Input Tab Container Card -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full">
-                    <div class="flex border-b border-slate-200 mb-4 text-xs font-bold uppercase tracking-wider">
-                        <button id="tabSelectorLogin" type="button" class="w-1/2 pb-2 text-blue-600 border-b-2 border-blue-600" onclick="switchFormContext('login')">Sign In</button>
-                        <button id="tabSelectorRegister" type="button" class="w-1/2 pb-2 text-slate-400" onclick="switchFormContext('register')">Register</button>
+                    <div>
+                        <h1 class="text-sm font-black text-slate-800 tracking-tight uppercase leading-none">GIG NEXUS</h1>
+                        <span class="text-[9px] text-slate-400 font-extrabold tracking-widest uppercase mt-0.5 block">SOLUTION LTD</span>
                     </div>
+                </div>
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+            </div>
 
-                    <!-- Client Access Form -->
-                    <form id="signInForm" onsubmit="processUserSignIn(event)" class="space-y-3.5">
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Email Address</label>
-                            <input type="email" id="loginEmailField" required class="w-full text-sm px-3 py-2 mt-1 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500 transition-all">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Secure Password</label>
-                            <input type="password" id="loginPasswordField" required class="w-full text-sm px-3 py-2 mt-1 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500 transition-all">
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg text-xs uppercase tracking-wider transition-colors mt-2">Sign In</button>
-                    </form>
+            <!-- 2. Activation Alert Ribbon Component -->
+            <div class="bg-white border border-slate-100 p-3.5 rounded-2xl flex items-center justify-between clean-shadow">
+                <p class="text-xs font-semibold text-slate-600 max-w-[65%] leading-snug">
+                    Pay <span class="text-slate-900 font-extrabold">70 KSH</span> to activate your account.
+                </p>
+                <button onclick="openModal('activationOverlay')" class="bg-[#2563eb] hover:bg-blue-700 text-white font-bold text-[11px] py-2 px-4 rounded-xl shadow-sm transition-colors tracking-wide">
+                    Activate Now
+                </button>
+            </div>
 
-                    <!-- Profile Registration Form -->
-                    <form id="signUpForm" onsubmit="processUserSignUp(event)" class="space-y-3 hidden">
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Full Name</label>
-                            <input type="text" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Phone Number</label>
-                            <input type="tel" placeholder="e.g. 07..." required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Email Address</label>
-                            <input type="email" id="registerEmailField" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Country</label>
-                            <select class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-white focus:outline-blue-500">
-                                <optgroup label="Africa">
-                                    <option>Kenya</option>
-                                    <option>South Africa</option>
-                                    <option>Nigeria</option>
-                                </optgroup>
-                                <optgroup label="Europe">
-                                    <option>United Kingdom</option>
-                                    <option>Germany</option>
-                                    <option>France</option>
-                                    <option>Italy</option>
-                                </optgroup>
-                                <optgroup label="Asia">
-                                    <option>Japan</option>
-                                    <option>India</option>
-                                    <option>South Korea</option>
-                                </optgroup>
-                                <optgroup label="Americas">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">Create Password</label>
-                            <input type="password" id="registerPasswordField" required class="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-blue-500">
-                        </div>
-                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-xs uppercase tracking-wider transition-colors mt-2">Create Account</button>
-                    </form>
+            <!-- 3. Wallet Balance Display Grid -->
+            <div class="bg-white border border-slate-100 p-5 rounded-2xl clean-shadow relative">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider">WALLET BALANCE (KES)</span>
+                    <i class="fa-solid fa-wallet text-blue-500 text-sm opacity-80"></i>
+                </div>
+                <p id="mainBalanceDisplay" class="text-3xl font-black text-slate-800 tracking-tight">KES 0.00</p>
+                
+                <button onclick="openWithdrawProcess()" class="w-full bg-[#94a3b8] hover:bg-slate-500 text-white font-extrabold text-xs py-3 rounded-xl mt-4 tracking-widest uppercase transition-colors shadow-sm">
+                    WITHDRAW
+                </button>
+            </div>
+
+            <!-- 4. Refer & Earn Program Module -->
+            <div class="bg-white border border-slate-100 p-5 rounded-2xl clean-shadow space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">REFER & EARN PROGRAM</h3>
+                    <i class="fa-solid fa-share-nodes text-blue-500 text-xs"></i>
+                </div>
+                
+                <div class="flex justify-between items-center text-xs border-b border-slate-50 pb-2">
+                    <span class="text-slate-500 font-medium">Total Referral Earnings:</span>
+                    <span id="referralEarningsDisplay" class="text-slate-800 font-bold">KES 0.00</span>
+                </div>
+                
+                <div class="space-y-1.5">
+                    <label class="block text-[9px] font-black text-slate-400 uppercase tracking-wide">Your Unique Referral Link:</label>
+                    <div class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100 inset-shadow-custom">
+                        <span class="text-xs font-bold text-slate-600 truncate flex-1">://gignexus.com</span>
+                        <button onclick="alert('Link copied to clipboard!')" class="bg-[#475569] hover:bg-slate-800 text-white font-black text-[10px] py-1.5 px-3 rounded-lg transition-colors uppercase tracking-wider">Copy</button>
+                    </div>
+                </div>
+                
+                <p class="text-[11px] font-medium text-slate-400 leading-tight italic">
+                    Earn KES 25.00 instantly for every new successful referral registered!
+                </p>
+                
+                <button onclick="triggerReferralCredit()" class="w-full bg-[#0284c7] hover:bg-sky-700 text-white text-xs font-black py-2.5 rounded-xl transition-colors tracking-wide shadow-sm uppercase">
+                    Simulate Successful Referral
+                </button>
+            </div>
+
+            <!-- 5. Available Grid Tasks Container -->
+            <div class="space-y-3">
+                <div class="flex justify-between items-center px-0.5">
+                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">TASKS</h3>
+                    <span id="dailyLimitIndicator" class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">Limit: 0 / 10 Complete</span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    
+                    <!-- Standard Surveys Module -->
+                    <button onclick="processTaskExecution('Standard Survey Pool', 20)" class="bg-[#0284c7] hover:bg-sky-700 text-white p-3.5 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center h-24 transition-all border border-sky-500">
+                        <span class="text-xs font-black uppercase tracking-wide">SURVEYS</span>
+                        <span class="text-[9px] font-semibold opacity-90 mt-1.5 leading-none">(KES 10-25 PER SURVEY)</span>
+                    </button>
+                    
+                    <!-- Video Tasks Module -->
+                    <button onclick="processTaskExecution('Video Processing Node', 40)" class="bg-[#16a34a] hover:bg-green-700 text-white p-3.5 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center h-24 transition-all border border-green-600">
+                        <span class="text-xs font-black uppercase tracking-wide">WATCH VIDEOS</span>
+                        <span class="text-[9px] font-semibold opacity-90 mt-1.5 leading-none">(UP TO KES 50 PER VIDEO)</span>
+                    </button>
+
+                    <!-- Games Portal Module -->
+                    <button onclick="processTaskExecution('Interactive Game Sandbox', 50)" class="bg-[#10b981] hover:bg-emerald-600 text-white p-3.5 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center h-24 transition-all border border-emerald-500">
+                        <span class="text-xs font-black uppercase tracking-wide">PLAY GAMES</span>
+                        <span class="text-[9px] font-semibold opacity-90 mt-1.5 leading-none">(UP TO KES 50 PER GAME)</span>
+                    </button>
+
+                    <!-- Advanced Surveys Paywall Entry -->
+                    <button id="premiumCardButton" onclick="processTaskExecution('Premium Surveys Pool', 60)" class="bg-[#64748b] text-slate-100 p-3.5 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center h-24 transition-all border border-slate-500">
+                        <span class="text-xs font-black uppercase tracking-wide">PREMIUM SURVEYS</span>
+                        <span id="premiumLabelText" class="text-[9px] font-medium opacity-80 mt-1.5 leading-none">(LOCKED)</span>
+                    </button>
+
                 </div>
             </div>
 
-            <!-- SECTION 2: LIVE METRICS USER DASHBOARD -->
-            <div id="applicationDashboard" class="hidden flex flex-col space-y-4 w-full">
-                
-                <!-- Interface Header Component -->
-                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-cubes text-blue-600 text-xl"></i>
-                        <div>
-                            <h1 class="text-sm font-black text-slate-900 tracking-tight leading-none">GIG NEXUS</h1>
-                            <span class="text-[9px] text-slate-400 font-bold tracking-widest uppercase">Solution Ltd</span>
-                        </div>
-                    </div>
-                    <button onclick="logoutActiveSession()" class="text-[11px] font-bold text-slate-400 hover:text-red-500 transition-colors">
-                        Sign Out <i class="fa-solid fa-right-from-bracket ml-0.5"></i>
-                    </button>
-                </div>
+        </div>
+    </div>
 
-                <!-- HIGH VISIBILITY ACTIVATION STATUS CARD -->
-                <div class="bg-blue-50 border-2 border-blue-200 p-4 rounded-xl flex flex-col gap-3 shadow-md">
-                    <div class="flex items-center justify-between">
-                        <p class="text-xs font-bold text-slate-800 max-w-[65%] leading-tight">
-                            Pay <span class="text-blue-700 font-extrabold text-sm">70 KSH</span> to activate your earnings layout account.
-                        </p>
-                        <button onclick="displayUiModal('depositAlertModal')" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-[11px] py-2 px-3 rounded-lg shadow-md transition-colors tracking-wide uppercase">
-                            Pay Now
-                        </button>
-                    </div>
-                    <div class="bg-white border border-blue-100 p-2 rounded-lg text-[11px] text-slate-700 space-y-1 font-medium">
-                        <div>💵 Send 70 KSH to M-Pesa: <span class="font-black text-blue-700 bg-blue-50 px-1 rounded text-xs">0142144664</span></div>
-                        <div>🏢 Account Name: <span class="font-bold text-slate-950 text-[10px]">GIG NEXUS SOLUTION ANGENCIES LTD</span></div>
-                    </div>
-                </div>
-
-                                        
+    <!-- OVERLAY 1: CLEAR ACCOUNT ACTIVATION PARAMETERS -->
+    <div id="activationOverlay" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-xs space-y-4 shadow-2xl border border-slate-100">
+            <div class="flex justify-between items-start">
+                <h4 class="font-black text-slate-900 text-sm tracking-tight">🔒 Account Activation Steps</h4>
+                <button onclick="closeModal('activationOverlay')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-base"></i></button>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Please complete the manual registration payment using the specific configuration verified below:
+            </p>
+            <div class="bg-slate-900 p-4 rounded-2xl text-xs space-y-2 text-slate-100 font-mono">
+                <div>
+                    <span class="block text-[9px] text-slate-400 font-sans font-bold uppercase tracking-wider">M-Pesa Number</span>
+                    
